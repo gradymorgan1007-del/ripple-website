@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0a0a0d">
+<title>Ripple — Software</title>
+<style>
+:root{--bg:#09090c;--panel:#111116;--panel2:#15151b;--line:#292932;--red:#e31642;--red2:#ff3158;--muted:#a4a4af;--white:#f7f7fa}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(ellipse at 50% -20%,#32101b 0%,transparent 45%),var(--bg);color:var(--white);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer}
+.wrap{width:min(1120px,calc(100% - 36px));margin:auto}
+header{position:sticky;top:0;z-index:10;background:#09090ddd;backdrop-filter:blur(16px);border-bottom:1px solid #ffffff10}
+.nav{height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:11px;font-weight:850;letter-spacing:.05em;font-size:20px}
+.logo{width:34px;height:34px;border-radius:10px;background:linear-gradient(145deg,var(--red2),#8d0929);display:grid;place-items:center;box-shadow:0 0 28px #e3164233}
+.logo svg{width:22px;height:22px}
+.navlinks{display:flex;gap:28px;color:#c0c0ca;font-size:14px}
+.navlinks a:hover{color:white}
+.navright{display:flex;gap:10px;align-items:center}
+.btn{border:1px solid var(--line);border-radius:10px;padding:12px 17px;color:var(--white);background:#15151b;display:inline-flex;align-items:center;justify-content:center;gap:9px;font-weight:700;transition:.2s}
+.btn:hover{transform:translateY(-1px);border-color:#6d2435}
+.btn-primary{background:linear-gradient(135deg,var(--red2),#b60c32);border-color:#ff4665;box-shadow:0 8px 28px #e3164225}
+.menu-btn{display:none}
+.hero{padding:88px 0 64px;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:52px;min-height:570px}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;border:1px solid #6b1b31;background:#e3164210;color:#ff7890;padding:8px 12px;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:.15em;text-transform:uppercase}
+.pulse{width:7px;height:7px;background:#ff3158;border-radius:50%;box-shadow:0 0 12px #ff3158}
+h1{font-size:clamp(44px,6vw,76px);line-height:.99;letter-spacing:-.06em;margin:23px 0 20px;font-weight:900}
+h1 span{color:var(--red2);text-shadow:0 0 38px #e3164230}
+.hero p{color:var(--muted);font-size:17px;line-height:1.75;max-width:520px;margin:0 0 28px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px}
+.note{font-size:12px;color:#777782;margin-top:20px}
+.preview{border:1px solid #3a222b;border-radius:18px;padding:10px;background:linear-gradient(145deg,#17171c,#09090b);box-shadow:0 25px 80px #0009,0 0 60px #e3164210;overflow:hidden}.cheat-shot{display:block;width:100%;height:auto;border-radius:10px;border:1px solid #292930}
+.window-top{height:34px;display:flex;align-items:center;justify-content:space-between;padding:0 8px 10px;color:#9999a4;font-size:11px}
+.dots{display:flex;gap:5px}.dots i{width:6px;height:6px;background:#555560;border-radius:50%}.dots i:first-child{background:var(--red)}
+.mock-head{display:flex;justify-content:space-between;align-items:center;padding:13px 14px;border:1px solid #2b2b32;border-radius:9px;background:#101014;font-size:13px;font-weight:800}
+.mock-head span:last-child{color:var(--red2);font-size:10px;letter-spacing:.12em}
+.mock-tabs{display:flex;gap:6px;padding:10px 0}.mock-tabs span{font-size:10px;color:#8d8d98;background:#131318;padding:8px 9px;border:1px solid #25252c;border-radius:5px}.mock-tabs span:first-child{color:white;border-color:#e31642}
+.mock-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.mock-card{border:1px solid #292930;border-radius:8px;background:#101014;overflow:hidden}
+.mock-card h4{margin:0;padding:10px 11px;border-bottom:1px solid #28282f;font-size:11px}
+.mock-row{display:flex;justify-content:space-between;align-items:center;padding:10px 11px;font-size:10px;color:#b4b4bd}
+.check{width:13px;height:13px;border:1px solid #555560;border-radius:3px;display:inline-block;margin-right:7px;vertical-align:-2px}
+.check.on{background:var(--red);border-color:var(--red);box-shadow:inset 0 0 0 3px var(--red)}
+.bar{height:4px;background:#28282f;margin:0 11px 12px;border-radius:9px;overflow:hidden}.bar i{display:block;height:100%;width:55%;background:var(--red);border-radius:9px}
+.mock-foot{display:flex;justify-content:space-between;color:#73737e;font-size:10px;padding:12px 4px 3px}
+.section{padding:74px 0}
+.section-head{text-align:center;max-width:650px;margin:0 auto 34px}
+.kicker{color:var(--red2);font-size:11px;font-weight:800;letter-spacing:.17em;text-transform:uppercase}
+h2{font-size:clamp(30px,4vw,43px);letter-spacing:-.04em;margin:12px 0}
+.section-head p{color:var(--muted);line-height:1.7;margin:0}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.feature{padding:24px;border:1px solid var(--line);border-radius:14px;background:linear-gradient(145deg,#141419,#0d0d11)}
+.feature-icon{width:42px;height:42px;border:1px solid #682136;background:#e3164216;color:#ff5777;border-radius:11px;display:grid;place-items:center;margin-bottom:18px}
+.feature h3{font-size:16px;margin:0 0 9px}.feature p{font-size:14px;color:var(--muted);line-height:1.65;margin:0}
+.product-wrap{display:grid;grid-template-columns:1fr .8fr;gap:18px;align-items:stretch}
+.product-main,.price-card{border:1px solid #42202b;border-radius:17px;background:linear-gradient(145deg,#171116,#0f0f13);padding:30px}
+.product-tag{display:inline-block;font-size:10px;color:#ff8198;background:#e3164216;border:1px solid #682136;padding:7px 10px;border-radius:99px;font-weight:800;letter-spacing:.1em}
+.product-main h3{font-size:30px;margin:18px 0 10px;letter-spacing:-.04em}
+.product-main p{color:var(--muted);line-height:1.7;max-width:560px}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}.pills span{font-size:11px;color:#bdbdc6;background:#202027;border:1px solid #303039;padding:8px 10px;border-radius:7px}
+.price-card{display:flex;flex-direction:column;justify-content:center;background:linear-gradient(160deg,#261018,#111115)}
+.price-label{color:#aaaab4;font-size:13px}.price{font-size:44px;font-weight:900;letter-spacing:-.05em;margin:8px 0}.price small{font-size:13px;color:#a5a5af;letter-spacing:0;font-weight:500}
+.price-card p{font-size:13px;color:var(--muted);line-height:1.6;margin:0 0 22px}
+.price-card .btn{width:100%}
+.faq{max-width:780px;margin:auto}.faq details{border-bottom:1px solid var(--line);padding:18px 0}.faq summary{cursor:pointer;font-weight:700}.faq p{color:var(--muted);line-height:1.7;font-size:14px}
+.cta{padding:38px;border:1px solid #4a1c2b;border-radius:18px;text-align:center;background:radial-gradient(ellipse at 50% 0%,#55122566,transparent 65%),#101014}
+.cta p{color:var(--muted);margin:0 auto 22px;max-width:560px;line-height:1.7}
+footer{border-top:1px solid var(--line);padding:26px 0;color:#858590;font-size:12px}
+.footer-row{display:flex;justify-content:space-between;align-items:center;gap:15px}
+.toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#1c1c23;border:1px solid #44444e;border-radius:10px;padding:13px 16px;color:white;font-size:13px;box-shadow:0 10px 40px #0008;transition:.25s;z-index:30;max-width:calc(100% - 30px);text-align:center}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:760px){.wrap{width:min(100% - 28px,600px)}.nav{height:64px}.navlinks{display:none}.menu-btn{display:inline-flex;padding:9px 11px}.navright .btn{display:none}.hero{padding:56px 0 42px;grid-template-columns:1fr;gap:32px;min-height:auto}.hero p{font-size:15px}.preview{transform:none}.features{grid-template-columns:1fr}.product-wrap{grid-template-columns:1fr}.product-main,.price-card{padding:23px}.section{padding:54px 0}.footer-row{align-items:flex-start;flex-direction:column}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="Ripple home"><span class="logo"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 8c4-5 12-5 16 0M3 12c5-5 13-5 18 0M5 16c4-3 10-3 14 0" stroke="white" stroke-width="2" stroke-linecap="round"/></svg></span>RIPPLE</a>
+    <nav class="navlinks"><a href="#features">Features</a><a href="#product">Product</a><a href="#faq">FAQ</a></nav>
+    <div class="navright"><a class="btn" href="#product">View product</a><button class="btn menu-btn" id="menuBtn" aria-label="Open navigation">☰</button></div>
+  </div>
+</header>
+<main id="top">
+<section class="wrap hero">
+  <div>
+    <div class="eyebrow"><i class="pulse"></i> Software • Built with precision</div>
+    <h1>BUILT DIFFERENT.<br><span>MADE FOR YOU.</span></h1>
+    <p>Meet Ripple: a bold, streamlined software brand with a clean interface, clear product details, and a no-clutter experience.</p>
+    <div class="hero-actions"><a class="btn btn-primary" href="#product">Explore product <span aria-hidden="true">↗</span></a><a class="btn" href="#features">Discover Ripple</a></div>
+    <div class="note">A polished experience from the first click.</div>
+  </div>
+  <div class="preview" aria-label="Your original Ripple cheat menu preview">
+    <img class="cheat-shot" src="ripple-menu.png" alt="Original Ripple menu screenshot, shown without changing its controls or layout">
+  </div>
+</section>
+<section class="section" id="features">
+  <div class="wrap">
+    <div class="section-head"><div class="kicker">The Ripple standard</div><h2>Simple. Sharp. Focused.</h2><p>A modern software storefront built around a clear product presentation and a consistent visual identity.</p></div>
+    <div class="features">
+      <article class="feature"><div class="feature-icon">✦</div><h3>Clean interface</h3><p>Dark surfaces, crisp typography, and restrained crimson accents keep the experience focused.</p></article>
+      <article class="feature"><div class="feature-icon">◈</div><h3>Clear product details</h3><p>Present features, compatibility information, pricing, and support details in one easy-to-scan place.</p></article>
+      <article class="feature"><div class="feature-icon">↗</div><h3>Built to scale</h3><p>The layout adapts to mobile and desktop, so the storefront feels at home on any screen.</p></article>
+    </div>
+  </div>
+</section>
+<section class="section" id="product">
+  <div class="wrap">
+    <div class="section-head"><div class="kicker">Featured product</div><h2>Meet Ripple</h2><p>One focused product page, with room to explain exactly what customers receive.</p></div>
+    <div class="product-wrap">
+      <article class="product-main">
+        <span class="product-tag">FEATURED SOFTWARE</span>
+        <h3>Ripple Software</h3>
+        <p>A streamlined software product with a premium dark interface. Add your verified product details, supported versions, delivery terms, and support information here before accepting orders.</p>
+        <div class="pills"><span>Digital delivery</span><span>Product updates</span><span>Customer support</span></div>
+      </article>
+      <aside class="price-card">
+        <div class="price-label">Lifetime access</div>
+        <div class="price">$249.99 <small>USD</small></div>
+        <p>One-time price shown as requested. Checkout is not connected yet; connect a payment provider that approves your product before taking payments.</p>
+        <button class="btn btn-primary" id="buyBtn">Purchase access <span>↗</span></button>
+      </aside>
+    </div>
+  </div>
+</section>
+<section class="section" id="faq">
+  <div class="wrap">
+    <div class="section-head"><div class="kicker">Need to know</div><h2>Frequently asked questions</h2><p>Keep important purchase and support information easy to find.</p></div>
+    <div class="faq">
+      <details><summary>How is a digital order delivered?</summary><p>After a compatible checkout provider confirms payment, a secure server-side workflow can deliver the purchased item or a license for an eligible product. This demo site does not issue real keys.</p></details>
+      <details><summary>Can I manage orders from an admin panel?</summary><p>Yes. A production setup can include protected admin sign-in, order history, license status, and refund or revocation workflows. The admin system must be implemented securely on a server.</p></details>
+      <details><summary>Is checkout active on this site?</summary><p>No. This is a front-end website starter. No payment information is collected and the purchase button is a demo until you connect a supported provider.</p></details>
+    </div>
+  </div>
+</section>
+<section class="wrap section" style="padding-top:0">
+  <div class="cta"><div class="kicker">RIPPLE</div><h2>Make your next move.</h2><p>Ready to take the next step? Connect your approved checkout and support workflow when your product details are finalized.</p><a class="btn btn-primary" href="#product">View featured product ↗</a></div>
+</section>
+</main>
+<footer><div class="wrap footer-row"><a class="brand" href="#top"><span class="logo"><svg viewBox="0 0 24 24" fill="none"><path d="M4 8c4-5 12-5 16 0M3 12c5-5 13-5 18 0M5 16c4-3 10-3 14 0" stroke="white" stroke-width="2" stroke-linecap="round"/></svg></span>RIPPLE</a><span>© <span id="year"></span> Ripple. All rights reserved.</span><span>Independent software brand</span></div></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+const toast=document.getElementById('toast');
+function notify(message){toast.textContent=message;toast.classList.add('show');clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>toast.classList.remove('show'),3200)}
+document.getElementById('buyBtn').addEventListener('click',()=>notify('Checkout is not connected yet. Connect an approved payment provider before publishing sales.'));
+document.getElementById('menuBtn').addEventListener('click',()=>notify('Use the sections below to explore the page.'));
+document.getElementById('year').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
